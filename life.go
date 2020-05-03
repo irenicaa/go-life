@@ -22,3 +22,14 @@ func NeighborsForPoint(point Point) []Point {
 
 	return neighbors
 }
+
+// NeighborsForPoints ...
+func NeighborsForPoints(points []Point) []Point {
+	allNeighbors := []Point{}
+	for _, point := range points {
+		neighbors := NeighborsForPoint(point)
+		allNeighbors = append(allNeighbors, neighbors...)
+	}
+
+	return allNeighbors
+}
