@@ -49,3 +49,27 @@ func TestNeighborsForPoints(test *testing.T) {
 	}
 	assert.Equal(test, wantNeighbors, neighbors)
 }
+
+func TestCountSamePoints(test *testing.T) {
+	points := []Point{
+		Point{X: 2, Y: 3},
+		Point{X: 2, Y: 2},
+		Point{X: 2, Y: 1},
+		Point{X: 0, Y: 3},
+		Point{X: 1, Y: 1},
+		Point{X: 0, Y: 3},
+		Point{X: 1, Y: 1},
+		Point{X: 0, Y: 1},
+	}
+	pointCounters := CountSamePoints(points)
+
+	wantPointCounters := map[Point]int{
+		Point{X: 1, Y: 1}: 2,
+		Point{X: 0, Y: 3}: 2,
+		Point{X: 0, Y: 1}: 1,
+		Point{X: 2, Y: 3}: 1,
+		Point{X: 2, Y: 2}: 1,
+		Point{X: 2, Y: 1}: 1,
+	}
+	assert.Equal(test, wantPointCounters, pointCounters)
+}
