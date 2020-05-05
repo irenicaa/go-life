@@ -38,15 +38,7 @@ func NeighborsForPoints(points []Point) []Point {
 func CountSamePoints(points []Point) map[Point]int {
 	pointCounters := map[Point]int{}
 	for _, point := range points {
-		newCounter := 0
-		currentCounter, ok := pointCounters[point]
-		if ok {
-			newCounter = currentCounter + 1
-		} else {
-			newCounter = 1
-		}
-
-		pointCounters[point] = newCounter
+		pointCounters[point]++
 	}
 
 	return pointCounters
