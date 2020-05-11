@@ -61,9 +61,9 @@ func TestCountSamePoints(test *testing.T) {
 		Point{X: 1, Y: 1},
 		Point{X: 0, Y: 1},
 	}
-	pointCounters := CountSamePoints(points)
+	pointsCounters := CountSamePoints(points)
 
-	wantPointCounters := map[Point]int{
+	wantPointsCounters := map[Point]int{
 		Point{X: 1, Y: 1}: 2,
 		Point{X: 0, Y: 3}: 2,
 		Point{X: 0, Y: 1}: 1,
@@ -71,5 +71,41 @@ func TestCountSamePoints(test *testing.T) {
 		Point{X: 2, Y: 2}: 1,
 		Point{X: 2, Y: 1}: 1,
 	}
-	assert.Equal(test, wantPointCounters, pointCounters)
+	assert.Equal(test, wantPointsCounters, pointsCounters)
+}
+
+func TestPopulate(test *testing.T) {
+	neighborsCounters := map[Point]int{
+		Point{0, 0}: 1,
+		Point{1, 0}: 2,
+		Point{2, 0}: 3,
+		Point{3, 0}: 2,
+		Point{4, 0}: 1,
+
+		Point{0, 1}: 1,
+		Point{1, 1}: 1,
+		Point{2, 1}: 2,
+		Point{3, 1}: 1,
+		Point{4, 1}: 1,
+
+		Point{0, 2}: 1,
+		Point{1, 2}: 2,
+		Point{2, 2}: 3,
+		Point{3, 2}: 2,
+		Point{4, 2}: 1,
+	}
+	points := []Point{
+		Point{1, 1},
+		Point{2, 1},
+		Point{3, 1},
+	}
+	newPopulation := Populate(points, neighborsCounters)
+
+	wantPopulation := []Point{
+		Point{2, 0},
+		Point{2, 1},
+		Point{2, 2},
+	}
+
+	assert.Equal(test, wantPopulation, newPopulation)
 }

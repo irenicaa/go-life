@@ -36,10 +36,29 @@ func NeighborsForPoints(points []Point) []Point {
 
 // CountSamePoints ...
 func CountSamePoints(points []Point) map[Point]int {
-	pointCounters := map[Point]int{}
+	pointsCounters := map[Point]int{}
 	for _, point := range points {
-		pointCounters[point]++
+		pointsCounters[point]++
 	}
 
-	return pointCounters
+	return pointsCounters
+}
+
+// Populate ...
+func Populate(points []Point, neighborsCounters map[Point]int) []Point {
+	newPopulation := []Point{}
+	for neighbor, counter := range neighborsCounters {
+		switch counter {
+		case 3:
+			newPopulation = append(newPopulation, neighbor)
+		case 2:
+			for _, point := range points {
+				if point == neighbor {
+					newPopulation = append(newPopulation, neighbor)
+					break
+				}
+			}
+		}
+	}
+	return newPopulation
 }
