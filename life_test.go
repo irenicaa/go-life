@@ -106,6 +106,14 @@ func TestPopulate(test *testing.T) {
 		Point{2, 1},
 		Point{2, 2},
 	}
-
 	assert.Equal(test, wantPopulation, newPopulation)
+}
+
+func TestPointsToGrid(test *testing.T) {
+	rectangle := Rect{Min: Point{1, 2}, Max: Point{5, 4}}
+	points := []Point{Point{2, 3}, Point{3, 3}, Point{4, 3}}
+	grid := PointsToGrid(points, rectangle)
+
+	wantGrid := "     \n *** \n     \n"
+	assert.Equal(test, wantGrid, grid)
 }

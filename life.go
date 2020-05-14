@@ -6,6 +6,12 @@ type Point struct {
 	Y int
 }
 
+// Rect ..
+type Rect struct {
+	Min Point
+	Max Point
+}
+
 // NeighborsForPoint ...
 func NeighborsForPoint(point Point) []Point {
 	neighbors := []Point{}
@@ -60,5 +66,33 @@ func Populate(points []Point, neighborsCounters map[Point]int) []Point {
 			}
 		}
 	}
+
 	return newPopulation
+}
+
+// PointsToGrid ...
+func PointsToGrid(points []Point, rectangle Rect) string {
+	grid := ""
+	for y := rectangle.Min.Y; y <= rectangle.Max.Y; y++ {
+		gridLine := ""
+		for x := rectangle.Min.X; x <= rectangle.Max.X; x++ {
+			hasPoint := false
+			point := Point{X: x, Y: y}
+			for _, currentPoint := range points {
+				if currentPoint == point {
+					hasPoint = true
+					break
+				}
+			}
+			if hasPoint {
+				gridLine += "*"
+			} else {
+				gridLine += " "
+			}
+		}
+
+		grid += gridLine + "\n"
+	}
+
+	return grid
 }
