@@ -23,9 +23,9 @@ func TestNeighborsForPoint(test *testing.T) {
 }
 
 func TestNeighborsForPoints(test *testing.T) {
-	neighbors := NeighborsForPoints([]Point{
-		Point{X: 2, Y: 3},
-		Point{X: 6, Y: 1},
+	neighbors := NeighborsForPoints(map[Point]struct{}{
+		Point{X: 2, Y: 3}: struct{}{},
+		Point{X: 6, Y: 1}: struct{}{},
 	})
 
 	wantNeighbors := []Point{

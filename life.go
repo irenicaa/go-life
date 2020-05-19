@@ -30,9 +30,9 @@ func NeighborsForPoint(point Point) []Point {
 }
 
 // NeighborsForPoints ...
-func NeighborsForPoints(points []Point) []Point {
+func NeighborsForPoints(points map[Point]struct{}) []Point {
 	allNeighbors := []Point{}
-	for _, point := range points {
+	for point := range points {
 		neighbors := NeighborsForPoint(point)
 		allNeighbors = append(allNeighbors, neighbors...)
 	}
