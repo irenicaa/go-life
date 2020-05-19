@@ -94,10 +94,10 @@ func TestPopulate(test *testing.T) {
 		Point{3, 2}: 2,
 		Point{4, 2}: 1,
 	}
-	points := []Point{
-		Point{1, 1},
-		Point{2, 1},
-		Point{3, 1},
+	points := map[Point]struct{}{
+		Point{1, 1}: struct{}{},
+		Point{2, 1}: struct{}{},
+		Point{3, 1}: struct{}{},
 	}
 	newPopulation := Populate(points, neighborsCounters)
 
