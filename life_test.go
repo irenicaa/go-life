@@ -111,7 +111,11 @@ func TestPopulate(test *testing.T) {
 
 func TestPointsToGrid(test *testing.T) {
 	rectangle := Rect{Min: Point{1, 2}, Max: Point{5, 4}}
-	points := []Point{Point{2, 3}, Point{3, 3}, Point{4, 3}}
+	points := map[Point]struct{}{
+		Point{2, 3}: struct{}{},
+		Point{3, 3}: struct{}{},
+		Point{4, 3}: struct{}{},
+	}
 	grid := PointsToGrid(points, rectangle)
 
 	wantGrid := "     \n *** \n     \n"

@@ -72,20 +72,14 @@ func Populate(
 }
 
 // PointsToGrid ...
-func PointsToGrid(points []Point, rectangle Rect) string {
+func PointsToGrid(points map[Point]struct{}, rectangle Rect) string {
 	grid := ""
 	for y := rectangle.Min.Y; y <= rectangle.Max.Y; y++ {
 		gridLine := ""
 		for x := rectangle.Min.X; x <= rectangle.Max.X; x++ {
-			hasPoint := false
 			point := Point{X: x, Y: y}
-			for _, currentPoint := range points {
-				if currentPoint == point {
-					hasPoint = true
-					break
-				}
-			}
-			if hasPoint {
+			_, ok := points[point]
+			if ok {
 				gridLine += "*"
 			} else {
 				gridLine += " "
