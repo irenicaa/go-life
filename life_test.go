@@ -101,10 +101,10 @@ func TestPopulate(test *testing.T) {
 	}
 	newPopulation := Populate(points, neighborsCounters)
 
-	wantPopulation := []Point{
-		Point{2, 0},
-		Point{2, 1},
-		Point{2, 2},
+	wantPopulation := map[Point]struct{}{
+		Point{2, 0}: struct{}{},
+		Point{2, 1}: struct{}{},
+		Point{2, 2}: struct{}{},
 	}
 	assert.Equal(test, wantPopulation, newPopulation)
 }
