@@ -91,3 +91,26 @@ func PointsToGrid(points map[Point]struct{}, rectangle Rect) string {
 
 	return grid
 }
+
+func WrapPointsToRect(points []Point, rectangle Rect) []Point {
+	newPoints := []Point{}
+	width := rectangle.Max.X - rectangle.Min.X
+	height := rectangle.Max.Y - rectangle.Min.Y
+	for _, point := range points {
+		if point.X < rectangle.Min.X {
+			point.X = point.X + width
+		}
+		if point.X > rectangle.Max.X {
+			point.X = point.X - width
+		}
+		if point.Y < rectangle.Min.Y {
+			point.Y = point.Y + height
+		}
+		if point.Y > rectangle.Max.Y {
+			point.Y = point.Y - height
+		}
+		newPoints = append(newPoints, point)
+	}
+
+	return newPoints
+}

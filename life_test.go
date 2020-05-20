@@ -121,3 +121,24 @@ func TestPointsToGrid(test *testing.T) {
 	wantGrid := "     \n *** \n     \n"
 	assert.Equal(test, wantGrid, grid)
 }
+
+func TextWrapPointsToRect(test *testing.T) {
+	rectangle := Rect{Min: Point{1, 2}, Max: Point{5, 4}}
+	points := []Point{
+		Point{X: 3, Y: 3},
+		Point{X: 0, Y: 3},
+		Point{X: 6, Y: 3},
+		Point{X: 3, Y: 1},
+		Point{X: 3, Y: 5},
+	}
+	newPoints := WrapPointsToRect(points, rectangle)
+
+	wantNewPoints := []Point{
+		Point{X: 3, Y: 3},
+		Point{X: 4, Y: 3},
+		Point{X: 2, Y: 3},
+		Point{X: 3, Y: 3},
+		Point{X: 3, Y: 2},
+	}
+	assert.Equal(test, wantNewPoints, newPoints)
+}
