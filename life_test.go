@@ -47,7 +47,7 @@ func TestNeighborsForPoints(test *testing.T) {
 		Point{X: 5, Y: 1},
 		Point{X: 5, Y: 0},
 	}
-	assert.Equal(test, wantNeighbors, neighbors)
+	assert.ElementsMatch(test, wantNeighbors, neighbors)
 }
 
 func TextWrapPointsToRect(test *testing.T) {
