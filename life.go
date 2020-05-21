@@ -98,6 +98,24 @@ func PopulatePoints(
 	return newPoints
 }
 
+// GridToPoints ...
+func GridToPoints(grid string, shift Point) map[Point]struct{} {
+	points := map[Point]struct{}{}
+	x, y := 0, 0
+	for i := 0; i < len(grid); i, x = i+1, x+1 {
+		switch grid[i] {
+		case '\n':
+			y++
+			x = -1
+		case '*':
+			point := Point{X: x + shift.X, Y: y + shift.Y}
+			points[point] = struct{}{}
+		}
+	}
+
+	return points
+}
+
 // PointsToGrid ...
 func PointsToGrid(points map[Point]struct{}, rectangle Rect) string {
 	grid := ""

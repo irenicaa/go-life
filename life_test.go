@@ -142,3 +142,18 @@ func TestPointsToGrid(test *testing.T) {
 	wantGrid := "     \n *** \n     \n"
 	assert.Equal(test, wantGrid, grid)
 }
+
+func TestGridToPoints(test *testing.T) {
+	grid := " * \n  *\n***"
+	shift := Point{X: 1, Y: 2}
+	points := GridToPoints(grid, shift)
+
+	wantPoints := map[Point]struct{}{
+		Point{2, 2}: struct{}{},
+		Point{3, 3}: struct{}{},
+		Point{1, 4}: struct{}{},
+		Point{2, 4}: struct{}{},
+		Point{3, 4}: struct{}{},
+	}
+	assert.Equal(test, wantPoints, points)
+}
