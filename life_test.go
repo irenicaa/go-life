@@ -74,7 +74,7 @@ func TestCountSamePoints(test *testing.T) {
 	assert.Equal(test, wantPointsCounters, pointsCounters)
 }
 
-func TestPopulate(test *testing.T) {
+func TestPopulatePoints(test *testing.T) {
 	neighborsCounters := map[Point]int{
 		Point{0, 0}: 1,
 		Point{1, 0}: 2,
@@ -99,14 +99,14 @@ func TestPopulate(test *testing.T) {
 		Point{2, 1}: struct{}{},
 		Point{3, 1}: struct{}{},
 	}
-	newPopulation := Populate(points, neighborsCounters)
+	newPoints := PopulatePoints(points, neighborsCounters)
 
-	wantPopulation := map[Point]struct{}{
+	wantNewPoints := map[Point]struct{}{
 		Point{2, 0}: struct{}{},
 		Point{2, 1}: struct{}{},
 		Point{2, 2}: struct{}{},
 	}
-	assert.Equal(test, wantPopulation, newPopulation)
+	assert.Equal(test, wantNewPoints, newPoints)
 }
 
 func TestPointsToGrid(test *testing.T) {

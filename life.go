@@ -51,24 +51,24 @@ func CountSamePoints(points []Point) map[Point]int {
 }
 
 // Populate ...
-func Populate(
+func PopulatePoints(
 	points map[Point]struct{},
 	neighborsCounters map[Point]int,
 ) map[Point]struct{} {
-	newPopulation := map[Point]struct{}{}
+	newPoints := map[Point]struct{}{}
 	for neighbor, counter := range neighborsCounters {
 		switch counter {
 		case 3:
-			newPopulation[neighbor] = struct{}{}
+			newPoints[neighbor] = struct{}{}
 		case 2:
 			_, ok := points[neighbor]
 			if ok {
-				newPopulation[neighbor] = struct{}{}
+				newPoints[neighbor] = struct{}{}
 			}
 		}
 	}
 
-	return newPopulation
+	return newPoints
 }
 
 // PointsToGrid ...
