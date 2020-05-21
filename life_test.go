@@ -50,7 +50,7 @@ func TestNeighborsForPoints(test *testing.T) {
 	assert.ElementsMatch(test, wantNeighbors, neighbors)
 }
 
-func TextWrapPointsToRect(test *testing.T) {
+func TestWrapPointsToRect(test *testing.T) {
 	rectangle := Rect{Min: Point{1, 2}, Max: Point{5, 4}}
 	points := []Point{
 		Point{X: 3, Y: 3},
@@ -66,7 +66,7 @@ func TextWrapPointsToRect(test *testing.T) {
 		Point{X: 4, Y: 3},
 		Point{X: 2, Y: 3},
 		Point{X: 3, Y: 3},
-		Point{X: 3, Y: 2},
+		Point{X: 3, Y: 3},
 	}
 	assert.Equal(test, wantNewPoints, newPoints)
 }

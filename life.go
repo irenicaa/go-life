@@ -77,7 +77,7 @@ func CountSamePoints(points []Point) map[Point]int {
 	return pointsCounters
 }
 
-// Populate ...
+// PopulatePoints ...
 func PopulatePoints(
 	points map[Point]struct{},
 	neighborsCounters map[Point]int,
