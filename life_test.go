@@ -133,13 +133,15 @@ func TestPopulatePoints(test *testing.T) {
 func TestPointsToGrid(test *testing.T) {
 	rectangle := Rect{Min: Point{1, 2}, Max: Point{5, 4}}
 	points := map[Point]struct{}{
-		Point{2, 3}: struct{}{},
+		Point{2, 2}: struct{}{},
 		Point{3, 3}: struct{}{},
-		Point{4, 3}: struct{}{},
+		Point{1, 4}: struct{}{},
+		Point{2, 4}: struct{}{},
+		Point{3, 4}: struct{}{},
 	}
 	grid := PointsToGrid(points, rectangle)
 
-	wantGrid := "     \n *** \n     \n"
+	wantGrid := " *   \n  *  \n***  \n"
 	assert.Equal(test, wantGrid, grid)
 }
 
