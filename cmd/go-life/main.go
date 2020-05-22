@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"time"
 
@@ -8,6 +9,13 @@ import (
 )
 
 func main() {
+	xMin := flag.Int("x-min", 0, "")
+	xMax := flag.Int("x-max", 80, "")
+	yMin := flag.Int("y-min", 0, "")
+	yMax := flag.Int("y-max", 24, "")
+	outDelay := flag.Duration("outDelay", 100*time.Millisecond, "")
+	flag.Parse()
+
 	points := map[life.Point]struct{}{
 		life.Point{X: 2, Y: 2}: struct{}{},
 		life.Point{X: 3, Y: 3}: struct{}{},
@@ -16,8 +24,8 @@ func main() {
 		life.Point{X: 3, Y: 4}: struct{}{},
 	}
 	rectangle := life.Rect{
-		Min: life.Point{X: 0, Y: 0},
-		Max: life.Point{X: 80, Y: 24},
+		Min: life.Point{X: *xMin, Y: *yMin},
+		Max: life.Point{X: *xMax, Y: *yMax},
 	}
 
 	for {
@@ -29,6 +37,6 @@ func main() {
 		neighborsCounters := life.CountSamePoints(neighbors)
 		points = life.PopulatePoints(points, neighborsCounters)
 
-		time.Sleep(100 * time.Millisecond)
+		time.Sleep(*outDelay)
 	}
 }
