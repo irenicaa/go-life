@@ -3,12 +3,17 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io/ioutil"
+	"log"
+	"os"
 	"time"
 
 	life "github.com/irenicaa/go-life"
 )
 
 func main() {
+	gridX := flag.Int("grid-x", 0, "")
+	gridY := flag.Int("grid-y", 0, "")
 	xMin := flag.Int("x-min", 0, "")
 	xMax := flag.Int("x-max", 80, "")
 	yMin := flag.Int("y-min", 0, "")
@@ -16,13 +21,13 @@ func main() {
 	outDelay := flag.Duration("outDelay", 100*time.Millisecond, "")
 	flag.Parse()
 
-	points := map[life.Point]struct{}{
-		life.Point{X: 2, Y: 2}: struct{}{},
-		life.Point{X: 3, Y: 3}: struct{}{},
-		life.Point{X: 1, Y: 4}: struct{}{},
-		life.Point{X: 2, Y: 4}: struct{}{},
-		life.Point{X: 3, Y: 4}: struct{}{},
+	gridBytes, err := ioutil.ReadAll(os.Stdin)
+	if err != nil {
+		log.Fatal(err)
 	}
+
+	gridShift := life.Point{X: *gridX, Y: *gridY}
+	points := life.GridToPoints(string(gridBytes), gridShift)
 	rectangle := life.Rect{
 		Min: life.Point{X: *xMin, Y: *yMin},
 		Max: life.Point{X: *xMax, Y: *yMax},

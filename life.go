@@ -1,5 +1,10 @@
 package life
 
+const deadCell = '.'
+const liveCell = 'O'
+const lineBreak = '\n'
+const commentStart = '!'
+
 // Point ...
 type Point struct {
 	X int
@@ -102,14 +107,26 @@ func PopulatePoints(
 func GridToPoints(grid string, shift Point) map[Point]struct{} {
 	points := map[Point]struct{}{}
 	x, y := 0, 0
+	inComment := false
 	for i := 0; i < len(grid); i, x = i+1, x+1 {
 		switch grid[i] {
-		case '*':
+		case liveCell:
+			if inComment {
+				break
+			}
+
 			point := Point{X: x + shift.X, Y: y + shift.Y}
 			points[point] = struct{}{}
-		case '\n':
+		case lineBreak:
 			x = -1
+			if inComment {
+				inComment = false
+				break
+			}
+
 			y++
+		case commentStart:
+			inComment = true
 		}
 	}
 
@@ -125,13 +142,13 @@ func PointsToGrid(points map[Point]struct{}, rectangle Rect) string {
 			point := Point{X: x, Y: y}
 			_, ok := points[point]
 			if ok {
-				gridLine += "*"
+				gridLine += string(liveCell)
 			} else {
-				gridLine += " "
+				gridLine += string(deadCell)
 			}
 		}
 
-		grid += gridLine + "\n"
+		grid += gridLine + string(lineBreak)
 	}
 
 	return grid
