@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	life "github.com/irenicaa/go-life"
 )
@@ -21,11 +22,13 @@ func main() {
 
 	for {
 		grid := life.PointsToGrid(points, rectangle)
-		fmt.Println(grid)
+		fmt.Print(grid)
 
 		neighbors := life.NeighborsForPoints(points)
 		neighbors = life.WrapPointsToRect(neighbors, rectangle)
 		neighborsCounters := life.CountSamePoints(neighbors)
 		points = life.PopulatePoints(points, neighborsCounters)
+
+		time.Sleep(100 * time.Millisecond)
 	}
 }

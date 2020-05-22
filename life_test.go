@@ -63,10 +63,10 @@ func TestWrapPointsToRect(test *testing.T) {
 
 	wantNewPoints := []Point{
 		Point{X: 3, Y: 3},
-		Point{X: 4, Y: 3},
-		Point{X: 2, Y: 3},
-		Point{X: 3, Y: 3},
-		Point{X: 3, Y: 3},
+		Point{X: 5, Y: 3},
+		Point{X: 1, Y: 3},
+		Point{X: 3, Y: 4},
+		Point{X: 3, Y: 2},
 	}
 	assert.Equal(test, wantNewPoints, newPoints)
 }

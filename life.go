@@ -42,8 +42,8 @@ func NeighborsForPoints(points map[Point]struct{}) []Point {
 
 // WrapPointsToRect ...
 func WrapPointsToRect(points []Point, rectangle Rect) []Point {
-	width := rectangle.Max.X - rectangle.Min.X
-	height := rectangle.Max.Y - rectangle.Min.Y
+	width := rectangle.Max.X - rectangle.Min.X + 1
+	height := rectangle.Max.Y - rectangle.Min.Y + 1
 
 	newPoints := []Point{}
 	for _, point := range points {
@@ -104,12 +104,12 @@ func GridToPoints(grid string, shift Point) map[Point]struct{} {
 	x, y := 0, 0
 	for i := 0; i < len(grid); i, x = i+1, x+1 {
 		switch grid[i] {
-		case '\n':
-			y++
-			x = -1
 		case '*':
 			point := Point{X: x + shift.X, Y: y + shift.Y}
 			points[point] = struct{}{}
+		case '\n':
+			x = -1
+			y++
 		}
 	}
 
