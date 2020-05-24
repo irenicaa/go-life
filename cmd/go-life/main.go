@@ -15,9 +15,9 @@ func main() {
 	gridX := flag.Int("grid-x", 0, "")
 	gridY := flag.Int("grid-y", 0, "")
 	xMin := flag.Int("x-min", 0, "")
-	xMax := flag.Int("x-max", 80, "")
+	xMax := flag.Int("x-max", 79, "")
 	yMin := flag.Int("y-min", 0, "")
-	yMax := flag.Int("y-max", 24, "")
+	yMax := flag.Int("y-max", 23, "")
 	outDelay := flag.Duration("outDelay", 100*time.Millisecond, "")
 	flag.Parse()
 
