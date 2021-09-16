@@ -1,9 +1,11 @@
 package life
 
-const deadCell = '.'
-const liveCell = 'O'
-const lineBreak = '\n'
-const commentStart = '!'
+const (
+	deadCell     = '.'
+	liveCell     = 'O'
+	lineBreak    = '\n'
+	commentStart = '!'
+)
 
 // Point ...
 type Point struct {
@@ -93,8 +95,7 @@ func PopulatePoints(
 		case 3:
 			newPoints[neighbor] = struct{}{}
 		case 2:
-			_, ok := points[neighbor]
-			if ok {
+			if _, ok := points[neighbor]; ok {
 				newPoints[neighbor] = struct{}{}
 			}
 		}
@@ -140,8 +141,7 @@ func PointsToGrid(points map[Point]struct{}, rectangle Rect) string {
 		gridLine := ""
 		for x := rectangle.Min.X; x <= rectangle.Max.X; x++ {
 			point := Point{X: x, Y: y}
-			_, ok := points[point]
-			if ok {
+			if _, ok := points[point]; ok {
 				gridLine += string(liveCell)
 			} else {
 				gridLine += string(deadCell)
