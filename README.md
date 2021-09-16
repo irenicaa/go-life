@@ -31,7 +31,7 @@ Options:
 - `-x-max INTEGER` &mdash; x-coordinate of a bottom-right point of a viewport (default: `79`);
 - `-y-min INTEGER` &mdash; y-coordinate of a top-left point of a viewport (default: `0`);
 - `-y-max INTEGER` &mdash; y-coordinate of a bottom-right point of a viewport (default: `23`);
-- `-outDelay DURATION` &mdash; delay between frames (e.g. `72h3m0.5s`; default: `100ms`).
+- `-out-delay DURATION` &mdash; delay between frames (e.g. `72h3m0.5s`; default: `100ms`).
 
 ## Output Example
 

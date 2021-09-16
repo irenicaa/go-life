@@ -18,7 +18,7 @@ func main() {
 	xMax := flag.Int("x-max", 79, "")
 	yMin := flag.Int("y-min", 0, "")
 	yMax := flag.Int("y-max", 23, "")
-	outDelay := flag.Duration("outDelay", 100*time.Millisecond, "")
+	outDelay := flag.Duration("out-delay", 100*time.Millisecond, "")
 	flag.Parse()
 
 	gridBytes, err := ioutil.ReadAll(os.Stdin)
