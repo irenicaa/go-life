@@ -43,16 +43,15 @@ func NeighborsForPoints(points map[Point]struct{}) []Point {
 
 // WrapPointsToRect ...
 func WrapPointsToRect(points []Point, rectangle Rect) []Point {
-	width := rectangle.Max.X - rectangle.Min.X + 1
 	height := rectangle.Max.Y - rectangle.Min.Y + 1
 
 	newPoints := []Point{}
 	for _, point := range points {
 		if point.X < rectangle.Min.X {
-			point.X = point.X + width
+			point.X = point.X + rectangle.Width()
 		}
 		if point.X > rectangle.Max.X {
-			point.X = point.X - width
+			point.X = point.X - rectangle.Width()
 		}
 
 		if point.Y < rectangle.Min.Y {
