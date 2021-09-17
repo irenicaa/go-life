@@ -13,12 +13,6 @@ type Point struct {
 	Y int
 }
 
-// Rect ..
-type Rect struct {
-	Min Point
-	Max Point
-}
-
 // NeighborsForPoint ...
 func NeighborsForPoint(point Point) []Point {
 	neighbors := []Point{}
