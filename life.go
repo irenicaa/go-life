@@ -67,7 +67,7 @@ func PopulatePoints(
 		case 3:
 			newPoints[neighbor] = struct{}{}
 		case 2:
-			if _, ok := points[neighbor]; ok {
+			if points.Contains(neighbor) {
 				newPoints[neighbor] = struct{}{}
 			}
 		}
@@ -113,7 +113,7 @@ func PointsToGrid(points PointSet, rectangle Rect) string {
 		gridLine := ""
 		for x := rectangle.Min.X; x <= rectangle.Max.X; x++ {
 			point := Point{X: x, Y: y}
-			if _, ok := points[point]; ok {
+			if points.Contains(point) {
 				gridLine += string(liveCell)
 			} else {
 				gridLine += string(deadCell)

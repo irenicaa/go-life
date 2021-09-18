@@ -8,3 +8,9 @@ type Point struct {
 
 // PointSet ...
 type PointSet map[Point]struct{}
+
+// Contains ...
+func (points PointSet) Contains(point Point) bool {
+	_, ok := points[point]
+	return ok
+}
