@@ -23,7 +23,7 @@ func TestNeighborsForPoint(test *testing.T) {
 }
 
 func TestNeighborsForPoints(test *testing.T) {
-	neighbors := NeighborsForPoints(map[Point]struct{}{
+	neighbors := NeighborsForPoints(PointSet{
 		Point{X: 2, Y: 3}: struct{}{},
 		Point{X: 6, Y: 1}: struct{}{},
 	})
@@ -115,14 +115,14 @@ func TestPopulatePoints(test *testing.T) {
 		Point{3, 2}: 2,
 		Point{4, 2}: 1,
 	}
-	points := map[Point]struct{}{
+	points := PointSet{
 		Point{1, 1}: struct{}{},
 		Point{2, 1}: struct{}{},
 		Point{3, 1}: struct{}{},
 	}
 	newPoints := PopulatePoints(points, neighborsCounters)
 
-	wantNewPoints := map[Point]struct{}{
+	wantNewPoints := PointSet{
 		Point{2, 0}: struct{}{},
 		Point{2, 1}: struct{}{},
 		Point{2, 2}: struct{}{},
@@ -135,7 +135,7 @@ func TestGridToPoints(test *testing.T) {
 	shift := Point{X: 1, Y: 2}
 	points := GridToPoints(grid, shift)
 
-	wantPoints := map[Point]struct{}{
+	wantPoints := PointSet{
 		Point{2, 2}: struct{}{},
 		Point{3, 3}: struct{}{},
 		Point{1, 4}: struct{}{},
@@ -150,7 +150,7 @@ func TestGridToPoints_withComments(test *testing.T) {
 	shift := Point{X: 1, Y: 2}
 	points := GridToPoints(grid, shift)
 
-	wantPoints := map[Point]struct{}{
+	wantPoints := PointSet{
 		Point{2, 2}: struct{}{},
 		Point{1, 3}: struct{}{},
 		Point{2, 3}: struct{}{},
@@ -161,7 +161,7 @@ func TestGridToPoints_withComments(test *testing.T) {
 
 func TestPointsToGrid(test *testing.T) {
 	rectangle := Rect{Min: Point{1, 2}, Max: Point{5, 4}}
-	points := map[Point]struct{}{
+	points := PointSet{
 		Point{2, 2}: struct{}{},
 		Point{3, 3}: struct{}{},
 		Point{1, 4}: struct{}{},

@@ -25,7 +25,7 @@ func NeighborsForPoint(point Point) []Point {
 }
 
 // NeighborsForPoints ...
-func NeighborsForPoints(points map[Point]struct{}) []Point {
+func NeighborsForPoints(points PointSet) []Point {
 	allNeighbors := []Point{}
 	for point := range points {
 		neighbors := NeighborsForPoint(point)
@@ -58,10 +58,10 @@ func CountSamePoints(points []Point) map[Point]int {
 
 // PopulatePoints ...
 func PopulatePoints(
-	points map[Point]struct{},
+	points PointSet,
 	neighborsCounters map[Point]int,
-) map[Point]struct{} {
-	newPoints := map[Point]struct{}{}
+) PointSet {
+	newPoints := PointSet{}
 	for neighbor, counter := range neighborsCounters {
 		switch counter {
 		case 3:
@@ -77,8 +77,8 @@ func PopulatePoints(
 }
 
 // GridToPoints ...
-func GridToPoints(grid string, shift Point) map[Point]struct{} {
-	points := map[Point]struct{}{}
+func GridToPoints(grid string, shift Point) PointSet {
+	points := PointSet{}
 	x, y := 0, 0
 	inComment := false
 	for i := 0; i < len(grid); i, x = i+1, x+1 {
@@ -107,7 +107,7 @@ func GridToPoints(grid string, shift Point) map[Point]struct{} {
 }
 
 // PointsToGrid ...
-func PointsToGrid(points map[Point]struct{}, rectangle Rect) string {
+func PointsToGrid(points PointSet, rectangle Rect) string {
 	grid := ""
 	for y := rectangle.Min.Y; y <= rectangle.Max.Y; y++ {
 		gridLine := ""
