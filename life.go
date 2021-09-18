@@ -7,12 +7,6 @@ const (
 	commentStart = '!'
 )
 
-// Point ...
-type Point struct {
-	X int
-	Y int
-}
-
 // NeighborsForPoint ...
 func NeighborsForPoint(point Point) []Point {
 	neighbors := []Point{}
