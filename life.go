@@ -65,10 +65,10 @@ func PopulatePoints(
 	for neighbor, counter := range neighborsCounters {
 		switch counter {
 		case 3:
-			newPoints[neighbor] = struct{}{}
+			newPoints.Add(neighbor)
 		case 2:
 			if points.Contains(neighbor) {
-				newPoints[neighbor] = struct{}{}
+				newPoints.Add(neighbor)
 			}
 		}
 	}
@@ -89,7 +89,7 @@ func GridToPoints(grid string, shift Point) PointSet {
 			}
 
 			point := Point{X: x + shift.X, Y: y + shift.Y}
-			points[point] = struct{}{}
+			points.Add(point)
 		case lineBreak:
 			x = -1
 			if inComment {

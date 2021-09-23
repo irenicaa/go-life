@@ -14,3 +14,8 @@ func (points PointSet) Contains(point Point) bool {
 	_, ok := points[point]
 	return ok
 }
+
+// Add ...
+func (points PointSet) Add(point Point) {
+	points[point] = struct{}{}
+}
