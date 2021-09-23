@@ -34,3 +34,14 @@ func (rectangle Rect) WrapPoint(point Point) Point {
 
 	return point
 }
+
+// WrapPoints ...
+func (rectangle Rect) WrapPoints(points []Point) []Point {
+	newPoints := []Point{}
+	for _, point := range points {
+		point = rectangle.WrapPoint(point)
+		newPoints = append(newPoints, point)
+	}
+
+	return newPoints
+}

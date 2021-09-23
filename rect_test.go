@@ -55,3 +55,27 @@ func TestRectWrapPoint_withPointGreaterThanMaximum(test *testing.T) {
 
 	assert.Equal(test, Point{X: 31, Y: 19}, point)
 }
+
+func TestRectWrapPoints(test *testing.T) {
+	rect := Rect{
+		Min: Point{X: 1, Y: 2},
+		Max: Point{X: 5, Y: 4},
+	}
+	points := []Point{
+		Point{X: 3, Y: 3},
+		Point{X: 0, Y: 3},
+		Point{X: 6, Y: 3},
+		Point{X: 3, Y: 1},
+		Point{X: 3, Y: 5},
+	}
+	newPoints := rect.WrapPoints(points)
+
+	wantNewPoints := []Point{
+		Point{X: 3, Y: 3},
+		Point{X: 5, Y: 3},
+		Point{X: 1, Y: 3},
+		Point{X: 3, Y: 4},
+		Point{X: 3, Y: 2},
+	}
+	assert.Equal(test, wantNewPoints, newPoints)
+}

@@ -38,7 +38,7 @@ func main() {
 		fmt.Print(grid)
 
 		neighbors := life.NeighborsForPoints(points)
-		neighbors = life.WrapPointsToRect(neighbors, rectangle)
+		neighbors = rectangle.WrapPoints(neighbors)
 		neighborsCounters := life.CountSamePoints(neighbors)
 		points = life.PopulatePoints(points, neighborsCounters)
 

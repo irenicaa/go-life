@@ -35,17 +35,6 @@ func NeighborsForPoints(points PointSet) []Point {
 	return allNeighbors
 }
 
-// WrapPointsToRect ...
-func WrapPointsToRect(points []Point, rectangle Rect) []Point {
-	newPoints := []Point{}
-	for _, point := range points {
-		point = rectangle.WrapPoint(point)
-		newPoints = append(newPoints, point)
-	}
-
-	return newPoints
-}
-
 // CountSamePoints ...
 func CountSamePoints(points []Point) map[Point]int {
 	pointsCounters := map[Point]int{}
