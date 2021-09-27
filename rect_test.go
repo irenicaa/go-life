@@ -7,57 +7,57 @@ import (
 )
 
 func TestRectWidth(test *testing.T) {
-	rect := Rect{
+	rectangle := Rect{
 		Min: Point{X: 5, Y: 12},
 		Max: Point{X: 23, Y: 42},
 	}
-	width := rect.Width()
+	width := rectangle.Width()
 
 	assert.Equal(test, 19, width)
 }
 
 func TestRectHeight(test *testing.T) {
-	rect := Rect{
+	rectangle := Rect{
 		Min: Point{X: 5, Y: 12},
 		Max: Point{X: 23, Y: 42},
 	}
-	height := rect.Height()
+	height := rectangle.Height()
 
 	assert.Equal(test, 31, height)
 }
 
 func TestRectWrapPoint_withPointInsideRectangle(test *testing.T) {
-	rect := Rect{
+	rectangle := Rect{
 		Min: Point{X: 5, Y: 12},
 		Max: Point{X: 23, Y: 42},
 	}
-	point := rect.WrapPoint(Point{X: 20, Y: 20})
+	point := rectangle.WrapPoint(Point{X: 20, Y: 20})
 
 	assert.Equal(test, Point{X: 20, Y: 20}, point)
 }
 
 func TestRectWrapPoint_withPointLessThanMinimum(test *testing.T) {
-	rect := Rect{
+	rectangle := Rect{
 		Min: Point{X: 5, Y: 12},
 		Max: Point{X: 23, Y: 42},
 	}
-	point := rect.WrapPoint(Point{X: 0, Y: 0})
+	point := rectangle.WrapPoint(Point{X: 0, Y: 0})
 
 	assert.Equal(test, Point{X: 19, Y: 31}, point)
 }
 
 func TestRectWrapPoint_withPointGreaterThanMaximum(test *testing.T) {
-	rect := Rect{
+	rectangle := Rect{
 		Min: Point{X: 5, Y: 12},
 		Max: Point{X: 23, Y: 42},
 	}
-	point := rect.WrapPoint(Point{X: 50, Y: 50})
+	point := rectangle.WrapPoint(Point{X: 50, Y: 50})
 
 	assert.Equal(test, Point{X: 31, Y: 19}, point)
 }
 
 func TestRectWrapPoints(test *testing.T) {
-	rect := Rect{
+	rectangle := Rect{
 		Min: Point{X: 1, Y: 2},
 		Max: Point{X: 5, Y: 4},
 	}
@@ -68,7 +68,7 @@ func TestRectWrapPoints(test *testing.T) {
 		Point{X: 3, Y: 1},
 		Point{X: 3, Y: 5},
 	}
-	newPoints := rect.WrapPoints(points)
+	newPoints := rectangle.WrapPoints(points)
 
 	wantNewPoints := []Point{
 		Point{X: 3, Y: 3},
