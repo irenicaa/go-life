@@ -12,11 +12,11 @@ func TestGridToPoints(test *testing.T) {
 	points := GridToPoints(grid, shift)
 
 	wantPoints := PointSet{
-		Point{2, 2}: struct{}{},
-		Point{3, 3}: struct{}{},
-		Point{1, 4}: struct{}{},
-		Point{2, 4}: struct{}{},
-		Point{3, 4}: struct{}{},
+		Point{X: 2, Y: 2}: struct{}{},
+		Point{X: 3, Y: 3}: struct{}{},
+		Point{X: 1, Y: 4}: struct{}{},
+		Point{X: 2, Y: 4}: struct{}{},
+		Point{X: 3, Y: 4}: struct{}{},
 	}
 	assert.Equal(test, wantPoints, points)
 }
@@ -27,22 +27,25 @@ func TestGridToPoints_withComments(test *testing.T) {
 	points := GridToPoints(grid, shift)
 
 	wantPoints := PointSet{
-		Point{2, 2}: struct{}{},
-		Point{1, 3}: struct{}{},
-		Point{2, 3}: struct{}{},
-		Point{3, 3}: struct{}{},
+		Point{X: 2, Y: 2}: struct{}{},
+		Point{X: 1, Y: 3}: struct{}{},
+		Point{X: 2, Y: 3}: struct{}{},
+		Point{X: 3, Y: 3}: struct{}{},
 	}
 	assert.Equal(test, wantPoints, points)
 }
 
 func TestPointsToGrid(test *testing.T) {
-	rectangle := Rect{Min: Point{1, 2}, Max: Point{5, 4}}
+	rectangle := Rect{
+		Min: Point{X: 1, Y: 2},
+		Max: Point{X: 5, Y: 4},
+	}
 	points := PointSet{
-		Point{2, 2}: struct{}{},
-		Point{3, 3}: struct{}{},
-		Point{1, 4}: struct{}{},
-		Point{2, 4}: struct{}{},
-		Point{3, 4}: struct{}{},
+		Point{X: 2, Y: 2}: struct{}{},
+		Point{X: 3, Y: 3}: struct{}{},
+		Point{X: 1, Y: 4}: struct{}{},
+		Point{X: 2, Y: 4}: struct{}{},
+		Point{X: 3, Y: 4}: struct{}{},
 	}
 	grid := PointsToGrid(points, rectangle)
 
